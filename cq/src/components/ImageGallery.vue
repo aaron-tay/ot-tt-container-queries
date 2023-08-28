@@ -1,7 +1,7 @@
 <template>
   <div class="image-gallery-container">
     <div class="image-gallery">
-      <template v-for="item in items">
+      <template v-for="item in items" :key="item.imgUrl">
         <Card :item="item"/>
       </template>
     </div>
@@ -10,18 +10,27 @@
 
 <script>
 import stockImages from "./stockImages.json";
+import stockText from "./stockText.json";
 import Card from "./Card.vue";
 
+function shuffle(list) {
+  return list.map(v => ({ v, r: Math.random() }))
+    .sort((a, b) => a.r - b.r)
+    .map(({ v }) => v);
+}
+const shuffledImages = shuffle(stockImages);
+const shuffledText = shuffle(stockText);
+
 export default {
-  // props: [items],
+  props: ["numItems"],
   components: {
     Card
   },
   data() {
     return {
-      items: stockImages.slice(0, 5).map(s => ({
+      items: shuffledImages.slice(0, this.numItems ?? 5).map((s, idx) => ({
         title: s.author,
-        bodyText: "abc",
+        bodyText: shuffledText.slice(idx, idx+3).join(" "),
         imgUrl: s.download_url
       }))
     };
@@ -37,23 +46,15 @@ export default {
 
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
 }
 
 /* could be grid when wide or list when narrow */
-/* @container imageGallery (width < 1000px) {
+@container imageGallery (width <= 600px) {
   .image-gallery {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
   }
-} */
-
-/* @container imageGallery (width >= 1000px) { */
-  .image-gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-/* } */
+}
 </style>

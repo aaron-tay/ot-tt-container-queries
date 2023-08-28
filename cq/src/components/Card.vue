@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: "UiCard",
   props: {
     item: Object,
   },
@@ -34,7 +35,6 @@ export default {
 .card__cover {
   display: block;
 }
-
 .card__image {
   aspect-ratio: 1 / 1;
   width: 100%;
@@ -47,36 +47,44 @@ export default {
 .card-container {
   container-type: inline-size;
   container-name: card;
-  width: 100%;
-  height: 100%;
-  /* max-width: 500px; */
 }
 
-@container card (width < 250px) {
-  .card {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
-  .card__cover {
-    max-width: 200px;
-  }
-  .title {
-    font-size: 2rem;
-  }
-}
-
-@container card (width >= 250px) {
+@container card (max-width: 300px) {
   .card {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 10px;
-  }
-  .card__cover {
-    max-width: 200px;
   }
   .card__content {
+    padding: 5px 5px;
+  }
+}
+
+@container card (min-width: 301px) and (max-width: 600px) {
+  .card {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .card__cover {
+    max-width: 20cqw;
+  }
+  .card__content {
+    padding: 5px 5px;
+  }
+}
+
+@container card (min-width: 601px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .card__cover {
+    max-width: 40cqw;
+  }
+  .card__content {
+    padding: 5px 5px;
   }
 }
 </style>

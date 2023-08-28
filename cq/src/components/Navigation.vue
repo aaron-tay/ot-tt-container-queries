@@ -19,6 +19,9 @@
             <li>Legal</li>
           </ul>
         </li>
+        <li>
+          <input type="search" placeholder="Search"/>
+        </li>
       </ul>
     </nav>
   </div>
@@ -26,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Navigation',
+  name: 'UiNavigation',
   props: {}
 }
 </script>
@@ -57,8 +60,6 @@ li:hover {
   flex-direction: column;
   gap: 0;
   min-width: max-content;
-  background: white;
-  outline: 1px solid #ccc;
 }
 
 .navigation-container {
@@ -91,6 +92,8 @@ li:hover {
     position: absolute;
     left: 0;
     top: 100%;
+    background: white;
+    outline: 1px solid #ccc;
   }
 
   .top-level > li:hover .nested-level {

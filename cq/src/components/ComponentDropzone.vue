@@ -5,7 +5,7 @@
     group="component"
     itemKey="name">
     <template #item="{ element }">
-      <component v-bind:is="element.name"></component>
+      <component v-bind:is="element.name" v-bind="element.props"></component>
     </template>
   </draggable>
 </template>

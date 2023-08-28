@@ -22,7 +22,6 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
   }
 }
 </script>
@@ -62,12 +61,14 @@ export default {
   grid-column: 1 / 2;
   grid-row: 2 / 4;
   background: #e1bee7;
+  overflow-y: auto;
 }
 .page-nav {
   grid-column: 2 / 3;
   background: #bbdefb;
   min-height: 48px;
   width: 100%;
+  z-index: 100;
 }
 .page-main {
   grid-column: 2 / 3;

@@ -1,5 +1,5 @@
 <template>
-  <KeepAlive>
+  <KeepAlive max="10">
     <Layout>
       <template v-slot:header>
         <ComponentDropzone :items="header"/>
@@ -23,22 +23,20 @@
 <script>
 import Layout from './components/PageLayout.vue'
 import ComponentDropzone from "./components/ComponentDropzone.vue";
-import ImageGallery from './components/ImageGallery.vue';
 
 export default {
   name: 'App',
   components: {
     Layout,
     ComponentDropzone,
-    ImageGallery
   },
   data() {
     return {
       header: [{ name: "Navigation" }],
       mainnav: [],
-      main: [{ name: "ImageGallery" }],
+      main: [{ name: "ImageGallery", props: { numItems: 5 } }],
       sidenav: [],
-      footer: []
+      footer: [{ name: "ImageGallery", props: { numItems: 2 } }]
     };
   }
 }
