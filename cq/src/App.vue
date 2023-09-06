@@ -32,11 +32,11 @@ export default {
   },
   data() {
     return {
-      header: [{ name: "Navigation" }],
+      header: [{ name: "Navigation", id: "N1" }],
       mainnav: [],
-      main: [{ name: "ImageGallery", props: { numItems: 5 } }],
+      main: [{ name: "ImageGallery", props: { maxItems: 10 }, id: "IG5" }],
       sidenav: [],
-      footer: [{ name: "ImageGallery", props: { numItems: 2 } }]
+      footer: []
     };
   }
 }
@@ -61,5 +61,11 @@ body {
 .dropzone {
   height: 100%;
   width: 100%;
+}
+
+.sortable-chosen {
+  outline: 2px dashed blue;
+  opacity: 0.25;
+  cursor: pointer;
 }
 </style>

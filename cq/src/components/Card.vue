@@ -57,6 +57,12 @@ export default {
   }
   .card__content {
     padding: 5px 5px;
+    .body {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
 }
 
@@ -70,13 +76,19 @@ export default {
   }
   .card__content {
     padding: 5px 5px;
+    .body {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
 }
 
 @container card (min-width: 601px) {
   .card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
   }
@@ -85,6 +97,12 @@ export default {
   }
   .card__content {
     padding: 5px 5px;
+    .title {
+      font-size: 3em;
+    }
+    .body {
+      font-size: max(1.5rem, 1.5rem + 1cqw);
+    }
   }
 }
 </style>

@@ -3,7 +3,10 @@
     class="dropzone"
     :list="items"
     group="component"
-    itemKey="name">
+    fallbackTolerance="50"
+    forceFallback="true"
+    filter=".no-drag"
+    itemKey="id">
     <template #item="{ element }">
       <component v-bind:is="element.name" v-bind="element.props"></component>
     </template>

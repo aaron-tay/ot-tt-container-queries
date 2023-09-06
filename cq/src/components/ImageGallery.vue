@@ -1,7 +1,11 @@
 <template>
   <div class="image-gallery-container">
+    <div class="no-drag">
+      <button @click.stop.prevent="removeItems">-</button>
+      <button @click.stop.prevent="addItems">+</button>
+    </div>
     <div class="image-gallery">
-      <template v-for="item in items" :key="item.imgUrl">
+      <template v-for="item in visibleItems" :key="item.imgUrl">
         <Card :item="item"/>
       </template>
     </div>
@@ -22,18 +26,32 @@ const shuffledImages = shuffle(stockImages);
 const shuffledText = shuffle(stockText);
 
 export default {
-  props: ["numItems"],
+  props: ["maxItems"],
   components: {
     Card
   },
   data() {
     return {
-      items: shuffledImages.slice(0, this.numItems ?? 5).map((s, idx) => ({
+      items: shuffledImages.slice(0, this.maxItems ?? 5).map((s, idx) => ({
         title: s.author,
         bodyText: shuffledText.slice(idx, idx+3).join(" "),
         imgUrl: s.download_url
-      }))
+      })),
+      numItems: 5
     };
+  },
+  computed: {
+    visibleItems() {
+      return this.items.slice(0, this.numItems);
+    }
+  },
+  methods: {
+    addItems() {
+      this.numItems = Math.min(this.numItems + 1, this.maxItems);
+    },
+    removeItems() {
+      this.numItems = Math.max(0, this.numItems - 1);
+    }
   }
 };
 </script>
