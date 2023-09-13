@@ -4,9 +4,9 @@
       <template v-slot:header>
         <ComponentDropzone :items="header"/>
       </template>
-      <template v-slot:mainnav>
+      <!-- <template v-slot:mainnav>
         <ComponentDropzone :items="mainnav"/>
-      </template>
+      </template> -->
       <template v-slot:main>
         <ComponentDropzone :items="main"/>
       </template>
@@ -34,6 +34,7 @@ export default {
     return {
       header: [{ name: "Navigation", id: "N1" }],
       mainnav: [],
+      // main: [],
       main: [{ name: "ImageGallery", props: { maxItems: 10 }, id: "IG5" }],
       sidenav: [],
       footer: []

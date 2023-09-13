@@ -35,10 +35,6 @@ export default {
 </script>
 
 <style scoped>
-*:hover {
-  outline: 1px solid red;
-}
-
 ul {
   display: flex;
   gap: 10px;
@@ -48,11 +44,10 @@ ul {
 
 li {
   min-width: 80px;
-}
-
-li:hover {
-  font-weight: bold;
-  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 
 .nested-level {
@@ -69,40 +64,15 @@ li:hover {
   height: 100%;
 }
 
-@container navigation (width < 80vw) and (height < 100px) {
-  .nested-level {
-    display: none;
-  }
-}
-
-/* 'header' mode' */
-@container navigation (height < 100px) {
-  .navigation {
-    display: flex;
-    height: 100%;
-    align-content: center;
-    flex-wrap: wrap;
-  }
-  .top-level > li:hover {
-    position: relative;
-  }
-
-  .nested-level {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    background: white;
-    outline: 1px solid #ccc;
-  }
-
-  .top-level > li:hover .nested-level {
-    display: flex;
+@media (max-width: 700px) {
+  .navigation-container {
+    container-type: inline-size;
   }
 }
 
 /* sidebar or collapsed mode */
-@container navigation (max-width: 600px) {
+@container navigation (max-width: 700px) {
+  *:hover { outline: 5px solid #blue; }
   ul {
     flex-direction: column;
     text-align: left;
@@ -117,22 +87,56 @@ li:hover {
   }
 }
 
-/* when in 'footer' mode */
-@container navigation (width > 80vw) and (height > 100px) {
-  ul {
-    text-align: left;
-    gap: 20px;
+@media (min-width: 701px) {
+  @container navigation (width < 80vw) and (height < 100px) {
+    .nested-level {
+      display: none;
+    }
   }
-  ul > li {
-    min-width: 80px;
+  
+  /* 'header' mode' */
+  @container navigation (height < 100px) {
+    .navigation {
+      display: flex;
+      height: 100%;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+    .top-level > li:hover {
+      position: relative;
+    }
+  
+    .nested-level {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: white;
+      outline: 1px solid #ccc;
+    }
+  
+    .top-level > li:hover .nested-level {
+      display: flex;
+    }
   }
-  .nested-level {
-    margin-top: 10px;
-    display: flex;
-    position: relative;
-    top: initial;
-    left: initial;
-    gap: 10px;
+  
+  /* when in 'footer' mode */
+  @container navigation (width > 80vw) and (height > 100px) {
+    ul {
+      text-align: left;
+      gap: 20px;
+    }
+    ul > li {
+      min-width: 80px;
+    }
+    .nested-level {
+      margin-top: 10px;
+      display: flex;
+      position: relative;
+      top: initial;
+      left: initial;
+      gap: 10px;
+    }
   }
 }
 </style>

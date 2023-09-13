@@ -3,9 +3,9 @@
   <header class="page-header">
     <slot name="header"></slot>
   </header>
-  <nav class="page-nav">
+  <!-- <nav class="page-nav">
     <slot name="mainnav"></slot>
-  </nav>
+  </nav> -->
   <main class="page-main">
     <slot name="main"></slot>
   </main>
@@ -45,6 +45,7 @@ export default {
       grid-column: 1 / -1 !important;
       grid-row: auto !important;
       padding: initial;
+      min-height: 50px;
     }
   }
 }
@@ -72,6 +73,7 @@ export default {
 }
 .page-main {
   grid-column: 2 / 3;
+  grid-row: 2 / 4;
   background: #dcedc8;
 }
 .page-footer {
